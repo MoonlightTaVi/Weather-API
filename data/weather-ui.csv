@@ -1,0 +1,22 @@
+element,en,ru
+ui_lang_label,Language,Язык
+ui_lang,English,Русский
+ui_units_label,Unit system,Система единиц
+btn_submit,Update,Обновить
+ui_enter_city,Enter the name of the location: ,Введите название населённого пункта: 
+ui_db_status,DB status,Статус БД
+ui_db_status_failed,Failed to connect,Соединение не установлено
+ui_db_status_connected,Connected,Соединение установлено
+ui_db_status_idle,Not connected (using meta.json caching),Нет соединения (используется кэширование в meta.json)
+ui_app_connection,Waiting for the response...,Ожидание ответа сервера...
+ui_app_idle,Please{c} enter the name of the desired location and press "update",Пожалуйста{c} введите название населённого пункта и нажмите "обновить"
+ui_controller_status,Application status,Статус приложения
+ui_controller_ok,OK,OK
+ui_controller_fail,Application failed (log file was created),Ошибка программы (лог файл был создан)
+ui_controller_server_fail,Internal server error (enter another location and/or try later),Ошибка сервера (введите другое место и/или попробуйте позже)
+ui_temp,Temperature (average),Температура (средняя)
+ui_temp_min,Temperature (at night),Температура (ночью)
+ui_temp_max,Temperature (at day),Температура (днём)
+ui_today,Today,Сегодня
+ui_tommorow,Tomorrow,Завтра
+ui_updated,Last updated,Последнее обновление
