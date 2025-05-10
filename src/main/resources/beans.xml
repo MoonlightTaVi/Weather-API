@@ -5,11 +5,15 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 	
-	<bean id="test" class="sh.roadmap.tavi.weatherapi.Test">
-		<constructor-arg ref="requestBuilder"/>
+	<bean id="appFrame" class="sh.roadmap.tavi.weatherapi.gui.MainFrame" init-method="init">
+		<property name="mainBar" ref="mainBar"/>
+		<property name="response" ref="responseLabel"/>
 	</bean>
-	<bean id="serviceFactory" class="sh.roadmap.tavi.weatherapi.service.ServiceFactory"/>
-	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder" scope="prototype" factory-bean="serviceFactory" factory-method="createRequest">
+	<bean id="mainBar" class="sh.roadmap.tavi.weatherapi.gui.MainBar"/>
+	<bean id="responseLabel" class="sh.roadmap.tavi.weatherapi.gui.ResponseLabel">
+		<property name="mainBar" ref="mainBar"/>
+	</bean>
+	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder">
 		<property name="config" ref="requestConfig"/>
 	</bean>
 	<bean id="requestConfig" class="sh.roadmap.tavi.weatherapi.service.RequestConfig">
