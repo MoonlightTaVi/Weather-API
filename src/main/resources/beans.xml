@@ -8,6 +8,7 @@
 	<bean id="appFrame" class="sh.roadmap.tavi.weatherapi.gui.MainFrame" init-method="init">
 		<property name="mainBar" ref="mainBar"/>
 		<property name="response" ref="responseLabel"/>
+		<property name="uiFactory" ref="uiFactory"/>
 	</bean>
 	<bean id="mainBar" class="sh.roadmap.tavi.weatherapi.gui.MainBar">
 		<property name="label" ref="responseLabel"/>
@@ -19,5 +20,9 @@
 	<bean id="requestConfig" class="sh.roadmap.tavi.weatherapi.service.RequestConfig">
 		<property name="propertiesFile" value="weather-api"/>
 	</bean>
+	<bean id="uiFactory" class="sh.roadmap.tavi.weatherapi.gui.locale.UiFactory">
+		<property name="observer" ref="uiObserver"/>
+	</bean>
+	<bean id="uiObserver" class="sh.roadmap.tavi.weatherapi.gui.locale.UiObserver"/>
 	
 </beans>

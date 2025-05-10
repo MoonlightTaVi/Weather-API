@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sh.roadmap.tavi.weatherapi.gui.locale.UiFactory;
 import sh.roadmap.tavi.weatherapi.service.RequestBuilder;
 
 @SuppressWarnings("serial")
@@ -31,20 +32,28 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 	private String location = "";
 	
 	private JTextField input = new JTextField();
-	private JButton btnSubmit = new JButton("Submit");
+	private JButton btnSubmit;
 	
 	private String response = "null";
 	
 	public MainBar(ApplicationContext context) {
+		UiFactory uiFactory = (UiFactory) context.getBean("uiFactory");
+		
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.setBounds(2, 5, 488, 40);
-		this.add(new JLabel("Enter location: "));
+		
+		JLabel label = uiFactory.getLabelBold("ui.input-field");
+		this.add(label);
+		
 		input.setPreferredSize(new Dimension(100, 18));
 		input.getDocument().addDocumentListener(this);
 		this.add(input);
+		
+		btnSubmit = uiFactory.getButton("ui.submit");
 		btnSubmit.setPreferredSize(new Dimension(100, 15));
 		btnSubmit.addActionListener(this);
 		this.add(btnSubmit);
+		
 		this.setVisible(true);
 	}
 	

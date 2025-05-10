@@ -12,22 +12,32 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import sh.roadmap.tavi.weatherapi.gui.locale.UiFactory;
+
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
+	private UiFactory uiFactory;
 	private MainBar mainBar;
 	private ResponseLabel response;
 	
 	public MainFrame() {
-		this.setTitle("MyApp");
-		//JFrame temp = this;
+		this.setTitle("app.title");
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				//temp.dispose();
 				System.exit(EXIT_ON_CLOSE);
 			}
 		});
+	}
+	
+	public void init() {
+		uiFactory.getObserver().register(this);
+		this.setSize(500, 400);
+		this.add(mainBar);
+		this.add(response);
+		this.setVisible(true);
+		uiFactory.getObserver().update();
 	}
 	
 	public void setMainBar(MainBar mainBar) {
@@ -38,12 +48,9 @@ public class MainFrame extends JFrame {
 	public void setResponse(ResponseLabel response) {
 		this.response = response;
 	}
-	
-	public void init() {
-		this.setSize(500, 400);
-		this.add(mainBar);
-		this.add(response);
-		this.setVisible(true);
+
+	public void setUiFactory(UiFactory uiFactory) {
+		this.uiFactory = uiFactory;
 	}
 	
 }
