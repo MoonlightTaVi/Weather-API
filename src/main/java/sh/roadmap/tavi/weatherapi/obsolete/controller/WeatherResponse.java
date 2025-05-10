@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.controller;
+package sh.roadmap.tavi.weatherapi.obsolete.controller;
 
 
 import java.text.SimpleDateFormat;
@@ -10,8 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
-import sh.roadmap.tavi.weatherapi.service.IWeatherService;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.service.IWeatherService;
 
 /**
  * A facade for the JSONObject, received as a response from the VisualCrossing web service.

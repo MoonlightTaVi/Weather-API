@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.obsolete.service;
 
 import java.util.*;
 import java.io.*;
@@ -6,8 +6,8 @@ import java.nio.file.*;
 
 import org.json.*;
 
-import sh.roadmap.tavi.weatherapi.controller.WeatherResponse;
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherResponse;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
 
 public class JsonWeatherService implements IWeatherService {
 	

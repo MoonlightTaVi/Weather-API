@@ -1,10 +1,10 @@
-package sh.roadmap.tavi.weatherapi.tools;
+package sh.roadmap.tavi.weatherapi.obsolete.tools;
 
 
 import java.io.IOException;
 import java.util.*;
 
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
 
 /**
  * A tool used to read the CSV (Comma Separated Value) files

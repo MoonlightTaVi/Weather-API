@@ -1,8 +1,9 @@
-package sh.roadmap.tavi.weatherapi;
+package sh.roadmap.tavi.weatherapi.obsolete;
 
-import sh.roadmap.tavi.weatherapi.tools.SimpleReader;
-import sh.roadmap.tavi.weatherapi.view.CreateSettingsWindow;
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.tools.SimpleReader;
+import sh.roadmap.tavi.weatherapi.obsolete.view.CreateSettingsWindow;
+
 import java.io.InputStream;
 
 /**

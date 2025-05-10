@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+	
+	<bean id="test" class="sh.roadmap.tavi.weatherapi.Test">
+		<constructor-arg ref="requestBuilder"/>
+	</bean>
+	<bean id="serviceFactory" class="sh.roadmap.tavi.weatherapi.service.ServiceFactory"/>
+	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder" scope="prototype" factory-bean="serviceFactory" factory-method="createRequest">
+		<property name="config" ref="requestConfig"/>
+	</bean>
+	<bean id="requestConfig" class="sh.roadmap.tavi.weatherapi.service.RequestConfig">
+		<property name="propertiesFile" value="weather-api"/>
+	</bean>
+	
+</beans>

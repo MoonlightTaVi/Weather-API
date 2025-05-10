@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.obsolete.service;
 
 
 import java.util.NoSuchElementException;
@@ -10,9 +10,9 @@ import org.json.JSONObject;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.InvalidURIException;
 import redis.clients.jedis.exceptions.JedisConnectionException;
-import sh.roadmap.tavi.weatherapi.controller.WeatherResponse;
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
-import sh.roadmap.tavi.weatherapi.tools.PropertiesReader;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherResponse;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.tools.PropertiesReader;
 
 /**
  * Basic API for working with a Redis database

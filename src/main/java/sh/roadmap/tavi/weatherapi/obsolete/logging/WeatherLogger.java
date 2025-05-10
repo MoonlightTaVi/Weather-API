@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.logging;
+package sh.roadmap.tavi.weatherapi.obsolete.logging;
 
 
 /**

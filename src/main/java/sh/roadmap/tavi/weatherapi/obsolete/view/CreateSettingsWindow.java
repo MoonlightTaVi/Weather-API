@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.view;
+package sh.roadmap.tavi.weatherapi.obsolete.view;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

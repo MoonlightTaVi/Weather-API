@@ -1,14 +1,14 @@
-package sh.roadmap.tavi.weatherapi.tools;
+package sh.roadmap.tavi.weatherapi.obsolete.tools;
 
 
 import java.io.InputStream;
 
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
 
 /**
  * A simple facade for reading various files as String arrays
- * @see sh.roadmap.tavi.weatherapi.tools.SimpleReader SimpleReader to read from the hard drive
- * @see sh.roadmap.tavi.weatherapi.tools.ResourcesReader ResourcesReader to read from "resources" 
+ * @see sh.roadmap.tavi.weatherapi.obsolete.tools.SimpleReader SimpleReader to read from the hard drive
+ * @see sh.roadmap.tavi.weatherapi.obsolete.tools.ResourcesReader ResourcesReader to read from "resources" 
  */
 public interface FilepathReader {
 	

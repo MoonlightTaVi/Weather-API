@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.view;
+package sh.roadmap.tavi.weatherapi.obsolete.view;
 
 
 import java.awt.*;
@@ -11,10 +11,10 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
 
-import sh.roadmap.tavi.weatherapi.controller.WeatherController;
-import sh.roadmap.tavi.weatherapi.controller.WeatherResponse;
-import sh.roadmap.tavi.weatherapi.service.IWeatherService;
-import sh.roadmap.tavi.weatherapi.tools.CsvHandler;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherController;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherResponse;
+import sh.roadmap.tavi.weatherapi.obsolete.service.IWeatherService;
+import sh.roadmap.tavi.weatherapi.obsolete.tools.CsvHandler;
 
 /**
  * The all-in-one class for creating a window frame, serves as an example of the use of the WeatherAPI.

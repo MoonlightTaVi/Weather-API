@@ -1,15 +1,15 @@
-package sh.roadmap.tavi.weatherapi;
+package sh.roadmap.tavi.weatherapi.obsolete;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import sh.roadmap.tavi.weatherapi.controller.WeatherController;
-import sh.roadmap.tavi.weatherapi.service.*;
-import sh.roadmap.tavi.weatherapi.tools.*;
-import sh.roadmap.tavi.weatherapi.view.WeatherApplication;
-import sh.roadmap.tavi.weatherapi.logging.*;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherController;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.*;
+import sh.roadmap.tavi.weatherapi.obsolete.service.*;
+import sh.roadmap.tavi.weatherapi.obsolete.tools.*;
+import sh.roadmap.tavi.weatherapi.obsolete.view.WeatherApplication;
 
 /**
  * Application entry point

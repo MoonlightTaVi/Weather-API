@@ -1,11 +1,11 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.obsolete.service;
 
 import java.util.Optional;
 
 import org.json.JSONObject;
 
-import sh.roadmap.tavi.weatherapi.controller.WeatherResponse;
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.controller.WeatherResponse;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
 
 public interface IWeatherService {
 	/**

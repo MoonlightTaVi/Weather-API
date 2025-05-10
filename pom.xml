@@ -3,8 +3,26 @@
   <groupId>com.github.tavi</groupId>
   <artifactId>weather-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>WeatherAPI</name>ns>
+  <name>WeatherAPI</name>
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>6.2.6</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter</artifactId>
+	    <version>3.4.5</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-webflux</artifactId>
+	    <version>3.4.5</version>
+	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.json/json -->
 	<dependency>
 	    <groupId>org.json</groupId>
@@ -38,8 +56,5 @@
 	    <type>pom</type>
 	    <scope>test</scope>
 	</dependency>
-
-
-
   </dependencies>
 </project>

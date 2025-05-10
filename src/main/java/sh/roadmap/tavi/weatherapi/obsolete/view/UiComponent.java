@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.view;
+package sh.roadmap.tavi.weatherapi.obsolete.view;
 
 
 import java.util.Collection;
@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import sh.roadmap.tavi.weatherapi.tools.Applier;
+import sh.roadmap.tavi.weatherapi.obsolete.tools.Applier;
 
 /**
  * A decorator, which simplifies the work with the text inside a UI component

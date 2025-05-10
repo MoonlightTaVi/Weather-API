@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.obsolete.service;
 
 /**
  * Database connection status <br>

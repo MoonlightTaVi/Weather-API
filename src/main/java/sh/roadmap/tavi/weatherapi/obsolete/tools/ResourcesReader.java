@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.tools;
+package sh.roadmap.tavi.weatherapi.obsolete.tools;
 
 
 import java.io.BufferedReader;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import sh.roadmap.tavi.weatherapi.logging.WeatherLogger;
+import sh.roadmap.tavi.weatherapi.obsolete.logging.WeatherLogger;
 
 /**
  * Used for reading the files from the "resources" directory
- * @see sh.roadmap.tavi.weatherapi.tools.SimpleReader
+ * @see sh.roadmap.tavi.weatherapi.obsolete.tools.SimpleReader
  */
 public class ResourcesReader implements FilepathReader {
 
