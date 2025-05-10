@@ -24,10 +24,11 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 	
 	@Autowired
 	private ApplicationContext context;
-	
+	private ResponseLabel label;
+
 	private Logger log = LoggerFactory.getLogger(MainBar.class);
 	
-	private String location;
+	private String location = "";
 	
 	private JTextField input = new JTextField();
 	private JButton btnSubmit = new JButton("Submit");
@@ -39,10 +40,16 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 		this.setBounds(2, 5, 488, 40);
 		this.add(new JLabel("Enter location: "));
 		input.setPreferredSize(new Dimension(100, 18));
+		input.getDocument().addDocumentListener(this);
 		this.add(input);
 		btnSubmit.setPreferredSize(new Dimension(100, 15));
+		btnSubmit.addActionListener(this);
 		this.add(btnSubmit);
 		this.setVisible(true);
+	}
+	
+	public void setLabel(ResponseLabel label) {
+		this.label = label;
 	}
 	
 	public String getResponse() {
@@ -76,9 +83,12 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		log.info("Button clicked");
+		log.info("Fetching weather for location: '{}'", location);
 		response = context.getBean(RequestBuilder.class)
 				.setLocation(location)
 				.build();
+		label.update(response);
 	}
 	
 }

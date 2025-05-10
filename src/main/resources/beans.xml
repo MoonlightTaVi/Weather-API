@@ -9,10 +9,10 @@
 		<property name="mainBar" ref="mainBar"/>
 		<property name="response" ref="responseLabel"/>
 	</bean>
-	<bean id="mainBar" class="sh.roadmap.tavi.weatherapi.gui.MainBar"/>
-	<bean id="responseLabel" class="sh.roadmap.tavi.weatherapi.gui.ResponseLabel">
-		<property name="mainBar" ref="mainBar"/>
+	<bean id="mainBar" class="sh.roadmap.tavi.weatherapi.gui.MainBar">
+		<property name="label" ref="responseLabel"/>
 	</bean>
+	<bean id="responseLabel" class="sh.roadmap.tavi.weatherapi.gui.ResponseLabel"/>
 	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder">
 		<property name="config" ref="requestConfig"/>
 	</bean>

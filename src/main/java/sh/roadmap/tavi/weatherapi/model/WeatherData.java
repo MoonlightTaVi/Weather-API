@@ -78,6 +78,9 @@ public class WeatherData {
 		} catch (JSONException e) {
 			log.error("Key does not exist: {}", key);
 		} catch (ClassCastException e) {
+			if (castTo == String.class) {
+				return Optional.of(castTo.cast(String.valueOf(param)));
+			}
 			log.error("Could not cast param {} of type {} to type {}, param key: {}",
 					param.toString(),
 					param.getClass().getSimpleName(),

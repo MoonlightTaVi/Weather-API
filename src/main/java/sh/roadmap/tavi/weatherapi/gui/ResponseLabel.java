@@ -10,18 +10,16 @@ import sh.roadmap.tavi.weatherapi.model.WeatherHtml;
 
 @SuppressWarnings("serial")
 public class ResponseLabel extends JLabel {
-	
-	private MainBar mainBar;
 
 	private WeatherData data = new WeatherData();
 	private WeatherHtml html = new WeatherHtml();
-
-	public void setMainBar(MainBar mainBar) {
-		this.mainBar = mainBar;
+	
+	public ResponseLabel() {
+		this.setVisible(true);
 	}
 
-	public void update() {
-		this.setText(html.fromWeatherData(data.fromString(mainBar.getResponse())).toString());
+	public void update(String fromString) {
+		this.setText(html.fromWeatherData(data.fromString(fromString)).toString());
 	}
 	
 }
