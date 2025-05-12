@@ -5,15 +5,19 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 	
-	<bean id="appFrame" class="sh.roadmap.tavi.weatherapi.gui.MainFrame" init-method="init">
-		<property name="mainBar" ref="mainBar"/>
-		<property name="response" ref="responseLabel"/>
+	<bean id="appFrame" class="sh.roadmap.tavi.weatherapi.gui.AppFrame" init-method="init">
+		<property name="requestBar" ref="requestBar"/>
+		<property name="response" ref="responsePanel"/>
+		<property name="uiObserver" ref="uiObserver"/>
+	</bean>
+	<bean id="requestBar" class="sh.roadmap.tavi.weatherapi.gui.RequestBar" init-method="init">
+		<property name="response" ref="responsePanel"/>
+		<property name="requestBuilder" ref="requestBuilder"/>
 		<property name="uiFactory" ref="uiFactory"/>
 	</bean>
-	<bean id="mainBar" class="sh.roadmap.tavi.weatherapi.gui.MainBar">
-		<property name="label" ref="responseLabel"/>
+	<bean id="responsePanel" class="sh.roadmap.tavi.weatherapi.gui.ResponsePanel" init-method="init">
+		<property name="uiFactory" ref="uiFactory"/>
 	</bean>
-	<bean id="responseLabel" class="sh.roadmap.tavi.weatherapi.gui.ResponseLabel"/>
 	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder">
 		<property name="config" ref="requestConfig"/>
 	</bean>

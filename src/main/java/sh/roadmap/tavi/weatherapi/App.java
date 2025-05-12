@@ -7,15 +7,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
-import sh.roadmap.tavi.weatherapi.gui.MainFrame;
-import sh.roadmap.tavi.weatherapi.service.RequestBuilder;
+import sh.roadmap.tavi.weatherapi.gui.AppFrame;
 
 @Configuration
 @ImportResource("classpath:beans.xml")
 public class App {
 	
+	@SuppressWarnings("unused")
 	@Autowired
-	private MainFrame appFrame;
+	private AppFrame appFrame;
 	
 	public static void main(String... args) {
 		System.setProperty("java.awt.headless", "false");

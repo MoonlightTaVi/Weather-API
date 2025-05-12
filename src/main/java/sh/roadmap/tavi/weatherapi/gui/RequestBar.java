@@ -10,38 +10,33 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import sh.roadmap.tavi.weatherapi.gui.locale.UiFactory;
 import sh.roadmap.tavi.weatherapi.service.RequestBuilder;
+import sh.roadmap.tavi.weatherapi.model.WeatherData;
 
 @SuppressWarnings("serial")
-public class MainBar extends JPanel implements ActionListener, DocumentListener {
+public class RequestBar extends JPanel implements ActionListener, DocumentListener {
 	
-	@Autowired
-	private ApplicationContext context;
-	private ResponseLabel label;
+	private UiFactory uiFactory;
+	private ResponsePanel response;
+	private RequestBuilder requestBuilder;
 
-	private Logger log = LoggerFactory.getLogger(MainBar.class);
+	private Logger log = LoggerFactory.getLogger(RequestBar.class);
 	
 	private String location = "";
 	
 	private JTextField input = new JTextField();
 	private JButton btnSubmit;
 	
-	private String response = "null";
-	
-	public MainBar(ApplicationContext context) {
-		UiFactory uiFactory = (UiFactory) context.getBean("uiFactory");
-		
+	public RequestBar() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
-		this.setBounds(2, 5, 488, 40);
-		
+		this.setAlignmentX(CENTER_ALIGNMENT);
+	}
+	
+	public void init() {
 		JLabel label = uiFactory.getLabelBold("ui.input-field");
 		this.add(label);
 		
@@ -50,19 +45,23 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 		this.add(input);
 		
 		btnSubmit = uiFactory.getButton("ui.submit");
-		btnSubmit.setPreferredSize(new Dimension(100, 15));
+		
 		btnSubmit.addActionListener(this);
 		this.add(btnSubmit);
 		
 		this.setVisible(true);
 	}
 	
-	public void setLabel(ResponseLabel label) {
-		this.label = label;
+	public void setResponse(ResponsePanel response) {
+		this.response = response;
 	}
 	
-	public String getResponse() {
-		return response;
+	public void setUiFactory(UiFactory uiFactory) {
+		this.uiFactory = uiFactory;
+	}
+
+	public void setRequestBuilder(RequestBuilder requestBuilder) {
+		this.requestBuilder = requestBuilder;
 	}
 	
 
@@ -94,10 +93,10 @@ public class MainBar extends JPanel implements ActionListener, DocumentListener 
 	public void actionPerformed(ActionEvent e) {
 		log.info("Button clicked");
 		log.info("Fetching weather for location: '{}'", location);
-		response = context.getBean(RequestBuilder.class)
+		String responseJson = requestBuilder
 				.setLocation(location)
 				.build();
-		label.update(response);
+		response.updateFromData(new WeatherData().fromString(responseJson));
 	}
 	
 }

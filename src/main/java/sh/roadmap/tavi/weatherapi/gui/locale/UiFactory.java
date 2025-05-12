@@ -17,6 +17,8 @@ public class UiFactory {
 	
 	public JLabel getLabel(String refText) {
 		JLabel result = new JLabel(refText);
+		result.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		result .setHorizontalAlignment(JLabel.CENTER);
 		observer.register(result);
 		result.setFont(result.getFont().deriveFont(0));
 		return result;
@@ -24,6 +26,8 @@ public class UiFactory {
 	
 	public JLabel getLabelBold(String refText) {
 		JLabel result = new JLabel(refText);
+		result.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		result .setHorizontalAlignment(JLabel.CENTER);
 		observer.register(result);
 		return result;
 	}
