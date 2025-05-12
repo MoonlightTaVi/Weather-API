@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 	
 	<bean id="appFrame" class="sh.roadmap.tavi.weatherapi.gui.AppFrame" init-method="init">
+		<property name="settingsBar" ref="settingsBar"/>
 		<property name="requestBar" ref="requestBar"/>
 		<property name="response" ref="responsePanel"/>
 		<property name="uiObserver" ref="uiObserver"/>
@@ -28,5 +29,10 @@
 		<property name="observer" ref="uiObserver"/>
 	</bean>
 	<bean id="uiObserver" class="sh.roadmap.tavi.weatherapi.gui.locale.UiObserver"/>
+	<bean id="localeScanner" class="sh.roadmap.tavi.weatherapi.gui.locale.LocaleScanner"/>
+	<bean id="settingsBar" class="sh.roadmap.tavi.weatherapi.gui.SettingsBar" init-method="init">
+		<property name="localeScanner" ref="localeScanner"/>
+		<property name="uiObserver" ref="uiObserver"/>
+	</bean>
 	
 </beans>

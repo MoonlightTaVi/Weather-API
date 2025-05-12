@@ -11,6 +11,7 @@ public class AppFrame extends JFrame {
 
 	private UiObserver uiObserver;
 	private RequestBar requestBar;
+	private SettingsBar settingsBar;
 	private ResponsePanel response;
 	
 	public AppFrame() {
@@ -25,6 +26,7 @@ public class AppFrame extends JFrame {
 		
 		this.getContentPane().add(requestBar, BorderLayout.NORTH);
 		this.getContentPane().add(response, BorderLayout.CENTER);
+		this.getContentPane().add(settingsBar, BorderLayout.SOUTH);
 		
 		this.pack();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,6 +35,10 @@ public class AppFrame extends JFrame {
 		this.setLocation(x, y);
 		
 		this.setVisible(true);
+	}
+	
+	public void setSettingsBar(SettingsBar settingsBar) {
+		this.settingsBar = settingsBar;
 	}
 	
 	public void setRequestBar(RequestBar requestBar) {

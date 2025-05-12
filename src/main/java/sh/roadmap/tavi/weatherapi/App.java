@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 import sh.roadmap.tavi.weatherapi.gui.AppFrame;
+import sh.roadmap.tavi.weatherapi.gui.locale.LocaleScanner;
 
 @Configuration
 @ImportResource("classpath:beans.xml")

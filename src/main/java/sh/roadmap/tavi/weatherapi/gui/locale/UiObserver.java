@@ -27,16 +27,21 @@ public class UiObserver implements ApplicationListener<ContextRefreshedEvent> {
 	
 	public void update() {
 		rb = ResourceBundle.getBundle("ui", Locale.getDefault());
+		JFrame appFrame = null;
 		for (Object component : components.keySet()) {
 			String name = components.get(component);
 			switch(component) {
 			case JLabel label: label.setText(rb.getString(name)); break;
 			case JTextArea area: area.setText(rb.getString(name)); break;
 			case AbstractButton button: button.setText(rb.getString(name)); break;
-			case JFrame frame: frame.setTitle(rb.getString(name)); break;
+			case JFrame frame:
+				frame.setTitle(rb.getString(name));
+				appFrame = frame;
+				break;
 			default: break;
 			}
 		}
+		appFrame.pack();
 	}
 
 	@Override
