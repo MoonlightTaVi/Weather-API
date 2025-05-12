@@ -39,7 +39,7 @@ public class RequestConfig {
 			String prop = rb.getString(key);
 			return prop;
 		} catch (MissingResourceException e) {
-			log.warn("Could not load: {}; Fallback to: {}", key, def);
+			log.warn("Property missing: {}; Fallback to: {}", key, def);
 			return def;
 		}
 	}

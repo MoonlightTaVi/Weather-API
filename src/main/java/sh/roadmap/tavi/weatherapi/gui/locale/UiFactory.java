@@ -32,6 +32,15 @@ public class UiFactory {
 		return result;
 	}
 	
+	public JLabel getLabelBig(String refText) {
+		JLabel result = new JLabel(refText);
+		result.setFont(result.getFont().deriveFont(16f));
+		result.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		result .setHorizontalAlignment(JLabel.CENTER);
+		observer.register(result);
+		return result;
+	}
+	
 	public JButton getButton(String refText) {
 		JButton result = new JButton(refText);
 		observer.register(result);

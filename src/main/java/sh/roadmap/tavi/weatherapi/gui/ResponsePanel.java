@@ -14,11 +14,14 @@ public class ResponsePanel extends JPanel {
 	
 	private UiFactory uiFactory;
 	private Map<Label, Component> labels = new HashMap<>();
+	private JTextPane address;
 	
 	public void init() {
 		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
 		this.setLayout(layout);
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		
+		this.add(getAddress());
 		
 		setupDay(0, "ui.response.today");
 		setupDay(1, "ui.response.tomorrow");
@@ -29,6 +32,7 @@ public class ResponsePanel extends JPanel {
 	}
 	
 	public void updateFromData(WeatherData data) {
+		address.setText(data.getResolvedAddress());
 		for (Label key : labels.keySet()) {
 			switch (labels.get(key)) {
 			case JLabel label: label.setText(data.getFromDay(key.day, key.type)); break;
@@ -42,7 +46,7 @@ public class ResponsePanel extends JPanel {
 	private void setupDay(int day, String daynameRef) {
 		this.add(
 				getRow(
-						uiFactory.getLabelBold(daynameRef),
+						uiFactory.getLabelBig(daynameRef),
 						getResponseLabel(day, "datetime")
 						)
 				);
@@ -70,12 +74,13 @@ public class ResponsePanel extends JPanel {
 		
 		this.add(uiFactory.getLabelBold("ui.response.conditions"));
 		JTextPane conditions = getResponseTextArea(day, "conditions");
-		conditions.setPreferredSize(new Dimension(150, 40));
+		conditions.setFont(conditions.getFont().deriveFont(Font.ITALIC));
+		conditions.setPreferredSize(new Dimension(300, 24));
 		this.add(conditions);
 		
 		this.add(uiFactory.getLabelBold("ui.response.description"));
 		JTextPane description = getResponseTextArea(day, "description");
-		description.setPreferredSize(new Dimension(150, 40));
+		description.setPreferredSize(new Dimension(300, 37));
 		this.add(description);
 	}
 	
@@ -90,6 +95,23 @@ public class ResponsePanel extends JPanel {
 		panel.setVisible(true);
 		return panel;
 	}
+	
+	private JTextPane getAddress() {
+		address = new JTextPane();
+		address.setText("Waiting...");
+		address.setPreferredSize(new Dimension(300, 37));
+		address.setFont(address.getFont().deriveFont(Font.ITALIC));
+		address.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        StyledDocument doc = address.getStyledDocument();
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		
+        address.setEditable(false);
+        address.setOpaque(false);
+		
+		return address;
+	}
 
 	private JLabel getResponseLabel(int day, String type) {
 		JLabel label = new JLabel("<...>", SwingConstants.CENTER);
@@ -101,20 +123,20 @@ public class ResponsePanel extends JPanel {
 	}
 
 	private JTextPane getResponseTextArea(int day, String type) {
-		JTextPane area = new JTextPane();
-		area.setText("<...>");
+		JTextPane pane = new JTextPane();
+		pane.setText("<...>");
 		
-		area.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
+		pane.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
 		SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        StyledDocument doc = area.getStyledDocument();
+        StyledDocument doc = pane.getStyledDocument();
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
 		
-		area.setEditable(false);
-		area.setOpaque(false);
+		pane.setEditable(false);
+		pane.setOpaque(false);
 		
-		labels.put(new Label(day, type), area);
-		return area;
+		labels.put(new Label(day, type), pane);
+		return pane;
 	}
 	
 	record Label(int day, String type) { }
