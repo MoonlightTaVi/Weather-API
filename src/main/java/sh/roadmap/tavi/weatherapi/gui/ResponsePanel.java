@@ -8,10 +8,14 @@ import javax.swing.text.*;
 
 import sh.roadmap.tavi.weatherapi.gui.locale.*;
 import sh.roadmap.tavi.weatherapi.model.WeatherData;
+import sh.roadmap.tavi.weatherapi.service.AppSettings;
+import sh.roadmap.tavi.weatherapi.service.UNIT;
 
 @SuppressWarnings("serial")
 public class ResponsePanel extends JPanel {
 	
+	private AppSettings appSettings;
+	private UiObserver uiObserver;
 	private UiFactory uiFactory;
 	private Map<Label, Component> labels = new HashMap<>();
 	private JTextPane address;
@@ -25,13 +29,23 @@ public class ResponsePanel extends JPanel {
 		
 		setupDay(0, "ui.response.today");
 		setupDay(1, "ui.response.tomorrow");
+		uiObserver.customUpdate();
 	}
 	
 	public void setUiFactory(UiFactory uiFactory) {
 		this.uiFactory = uiFactory;
 	}
 	
+	public void setUiObserver(UiObserver uiObserver) {
+		this.uiObserver = uiObserver;
+	}
+
+	public void setAppSettings(AppSettings appSettings) {
+		this.appSettings = appSettings;
+	}
+
 	public void updateFromData(WeatherData data) {
+		uiObserver.customUpdate();
 		address.setText(data.getResolvedAddress());
 		for (Label key : labels.keySet()) {
 			switch (labels.get(key)) {
@@ -54,21 +68,21 @@ public class ResponsePanel extends JPanel {
 				getRow(
 						uiFactory.getLabelBold("ui.response.temp"),
 						getResponseLabel(day, "temp"),
-						uiFactory.getLabelBold("ui.degrees.us")
+						getDegreesLabel()
 						)
 				);
 		this.add(
 				getRow(
 						uiFactory.getLabelBold("ui.response.tempmin"),
 						getResponseLabel(day, "tempmin"),
-						uiFactory.getLabelBold("ui.degrees.us")
+						getDegreesLabel()
 						)
 				);
 		this.add(
 				getRow(
 						uiFactory.getLabelBold("ui.response.tempmax"),
 						getResponseLabel(day, "tempmax"),
-						uiFactory.getLabelBold("ui.degrees.us")
+						getDegreesLabel()
 						)
 				);
 		
@@ -119,6 +133,23 @@ public class ResponsePanel extends JPanel {
 		label.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		label.setHorizontalAlignment(JLabel.CENTER);
 		labels.put(new Label(day, type), label);
+		return label;
+	}
+	
+	private JLabel getDegreesLabel() {
+		JLabel label = new JLabel();
+		uiObserver.registerCustom(() -> {
+			switch (appSettings.getUnits()) {
+			case UNIT.BASE:
+				label.setText("°K");
+				break;
+			case UNIT.US:
+				label.setText("°F");
+				break;
+			default:
+				label.setText("°C");
+			}
+			});
 		return label;
 	}
 

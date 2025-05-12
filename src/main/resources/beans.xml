@@ -12,12 +12,15 @@
 		<property name="uiObserver" ref="uiObserver"/>
 	</bean>
 	<bean id="requestBar" class="sh.roadmap.tavi.weatherapi.gui.RequestBar" init-method="init">
+		<property name="appSettings" ref="appSettings"/>
 		<property name="response" ref="responsePanel"/>
 		<property name="requestBuilder" ref="requestBuilder"/>
 		<property name="uiFactory" ref="uiFactory"/>
 	</bean>
 	<bean id="responsePanel" class="sh.roadmap.tavi.weatherapi.gui.ResponsePanel" init-method="init">
+		<property name="appSettings" ref="appSettings"/>
 		<property name="uiFactory" ref="uiFactory"/>
+		<property name="uiObserver" ref="uiObserver"/>
 	</bean>
 	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder">
 		<property name="config" ref="requestConfig"/>
@@ -31,8 +34,15 @@
 	<bean id="uiObserver" class="sh.roadmap.tavi.weatherapi.gui.locale.UiObserver"/>
 	<bean id="localeScanner" class="sh.roadmap.tavi.weatherapi.gui.locale.LocaleScanner"/>
 	<bean id="settingsBar" class="sh.roadmap.tavi.weatherapi.gui.SettingsBar" init-method="init">
+		<property name="appSettings" ref="appSettings"/>
 		<property name="localeScanner" ref="localeScanner"/>
 		<property name="uiObserver" ref="uiObserver"/>
+	</bean>
+	<bean id="settingsCache" class="sh.roadmap.tavi.weatherapi.service.CacheManager" destroy-method="dispose">
+		<constructor-arg value="data/settings.json"/>
+	</bean>
+	<bean id="appSettings" class="sh.roadmap.tavi.weatherapi.service.AppSettings" init-method="init">
+		<property name="settingsCache" ref="settingsCache"/>
 	</bean>
 	
 </beans>

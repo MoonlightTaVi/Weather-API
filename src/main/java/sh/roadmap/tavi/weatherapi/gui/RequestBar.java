@@ -14,12 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import sh.roadmap.tavi.weatherapi.gui.locale.UiFactory;
+import sh.roadmap.tavi.weatherapi.service.AppSettings;
 import sh.roadmap.tavi.weatherapi.service.RequestBuilder;
 import sh.roadmap.tavi.weatherapi.model.WeatherData;
 
 @SuppressWarnings("serial")
 public class RequestBar extends JPanel implements ActionListener, DocumentListener {
 	
+	private AppSettings appSettings;
+
 	private UiFactory uiFactory;
 	private ResponsePanel response;
 	private RequestBuilder requestBuilder;
@@ -30,6 +33,7 @@ public class RequestBar extends JPanel implements ActionListener, DocumentListen
 	
 	private JTextField input = new JTextField();
 	private JButton btnSubmit;
+	
 	
 	public RequestBar() {
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -64,6 +68,10 @@ public class RequestBar extends JPanel implements ActionListener, DocumentListen
 		this.requestBuilder = requestBuilder;
 	}
 	
+	public void setAppSettings(AppSettings appSettings) {
+		this.appSettings = appSettings;
+	}
+	
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
@@ -83,6 +91,9 @@ public class RequestBar extends JPanel implements ActionListener, DocumentListen
 	private void update(DocumentEvent e) {
 		try {
 			location = e.getDocument().getText(0, e.getDocument().getLength());
+			location = location.replaceAll("\\s", "_");
+			location = location.replaceAll("_+", "_");
+			location = location.replaceAll("[^a-zA-Zа-яА-Я_]", "");
 		} catch (BadLocationException exc) {
 			// This won't likely ever happen, because we hard-coded the boundaries of the input's text
 			log.error("Some unpredicted behaviour: {}", exc.getMessage());
@@ -95,6 +106,8 @@ public class RequestBar extends JPanel implements ActionListener, DocumentListen
 		log.info("Fetching weather for location: '{}'", location);
 		String responseJson = requestBuilder
 				.setLocation(location)
+				.setLanguage(appSettings.getLang())
+				.setUnits(appSettings.getUnits())
 				.build();
 		response.updateFromData(new WeatherData().fromString(responseJson));
 	}

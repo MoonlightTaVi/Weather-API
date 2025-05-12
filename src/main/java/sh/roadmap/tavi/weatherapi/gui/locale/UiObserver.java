@@ -12,6 +12,12 @@ public class UiObserver implements ApplicationListener<ContextRefreshedEvent> {
 	private ResourceBundle rb;
 	private Map<Object, String> components = new HashMap<>();
 	
+	private Set<Runnable> customUpdatables = new HashSet<>();
+	
+	
+	public void registerCustom(Runnable callOnUpdate) {
+		customUpdatables.add(callOnUpdate);
+	}
 	
 	public void register(Object... components) {
 		for (Object component : components) {
@@ -23,6 +29,10 @@ public class UiObserver implements ApplicationListener<ContextRefreshedEvent> {
 			default: break;
 			}
 		}
+	}
+	
+	public void customUpdate() {
+		customUpdatables.forEach(Runnable::run);
 	}
 	
 	public void update() {
@@ -42,6 +52,7 @@ public class UiObserver implements ApplicationListener<ContextRefreshedEvent> {
 			}
 		}
 		appFrame.pack();
+		appFrame.setMinimumSize(appFrame.getSize());
 	}
 
 	@Override

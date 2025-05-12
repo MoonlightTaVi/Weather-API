@@ -41,6 +41,14 @@ public class LocaleScanner {
 		return languages.toArray(String[]::new);
 	}
 	
+	public String languageFromLocale(String locale) {
+		String result = languages.get(
+				locales.indexOf(locale)
+				);
+		log.info("Locale '{}' means '{}'", locale, result);
+		return result;
+	}
+	
 	public void setLocale(String fromLanguageName) {
 		String locale = null;
 		log.debug("Trying to change locale to {}...", fromLanguageName);

@@ -48,7 +48,7 @@ public class RequestBuilder {
 	}
 	
 	public RequestBuilder setUnits(UNIT units) {
-		this.units = units.toString();
+		this.units = units.toString().toLowerCase();
 		return this;
 	}
 	
@@ -79,11 +79,6 @@ public class RequestBuilder {
 					}
 				});
 		return response.block();
-	}
-	
-	
-	enum UNIT {
-		METRIC, UK, US, BASE
 	}
 	
 }

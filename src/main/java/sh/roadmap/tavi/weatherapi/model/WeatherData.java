@@ -40,7 +40,7 @@ public class WeatherData {
 		JSONArray days;
 		if ((days = getDays()) != null) {
 			if (day < days.length()) {
-				return days.getJSONObject(0);
+				return days.getJSONObject(day);
 			}
 		}
 		return null;

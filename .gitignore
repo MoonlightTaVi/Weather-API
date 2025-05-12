@@ -5,3 +5,4 @@ target/
 weather-api.l*
 */**/*.properties
 !*/**/*_[a-zA-Z][a-zA-Z].properties
+*/**/*.json
