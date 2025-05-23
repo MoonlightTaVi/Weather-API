@@ -22,10 +22,10 @@
 		<property name="uiFactory" ref="uiFactory"/>
 		<property name="uiObserver" ref="uiObserver"/>
 	</bean>
-	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.service.RequestBuilder">
+	<bean id="requestBuilder" class="sh.roadmap.tavi.weatherapi.api.RequestBuilder">
 		<property name="config" ref="requestConfig"/>
 	</bean>
-	<bean id="requestConfig" class="sh.roadmap.tavi.weatherapi.service.RequestConfig">
+	<bean id="requestConfig" class="sh.roadmap.tavi.weatherapi.api.RequestConfig">
 		<property name="propertiesFile" value="weather-api"/>
 	</bean>
 	<bean id="uiFactory" class="sh.roadmap.tavi.weatherapi.gui.locale.UiFactory">

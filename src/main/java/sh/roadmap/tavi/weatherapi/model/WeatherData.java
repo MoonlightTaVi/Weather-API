@@ -1,5 +1,7 @@
 package sh.roadmap.tavi.weatherapi.model;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import org.json.JSONArray;
@@ -10,14 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WeatherData {
-	
 	private static Logger log = LoggerFactory.getLogger(WeatherData.class);
 	
 	private JSONObject body;
+	private long updatedTime;
 	
 	public WeatherData fromString(String jsonString) {
 		try {
 			body = new JSONObject(jsonString);
+			updatedTime = System.currentTimeMillis();
 		} catch (JSONException e) {
 			log.error("Could not parse response, invalid JSON string: {}", jsonString);
 		}
@@ -27,9 +30,13 @@ public class WeatherData {
 	public String getResolvedAddress() {
 		return getParam("resolvedAddress").orElse(null);
 	}
-	
 	public String getAddress() {
 		return getParam("address").orElse(null);
+	}
+	public String getTimestamp() {
+		Date date = new Date(updatedTime);
+		DateFormat format = DateFormat.getDateInstance();
+		return format.format(date);
 	}
 	
 	public JSONArray getDays() {

@@ -13,9 +13,9 @@ import javax.swing.text.BadLocationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sh.roadmap.tavi.weatherapi.api.RequestBuilder;
 import sh.roadmap.tavi.weatherapi.gui.locale.UiFactory;
 import sh.roadmap.tavi.weatherapi.service.AppSettings;
-import sh.roadmap.tavi.weatherapi.service.RequestBuilder;
 import sh.roadmap.tavi.weatherapi.model.WeatherData;
 
 @SuppressWarnings("serial")

@@ -93,12 +93,15 @@ public class CacheManager {
 		return true;
 	}
 
+	/**
+	 * Called on application close
+	 */
 	public void dispose() {
 		save(body);
 	}
 	
 	/**
-	 * Save the {@link JsonWeatherService.body} to a file on the hard drive
+	 * Save the meta data to a file on the hard drive
 	 */
 	private void save(JSONObject body) {
 		try (BufferedWriter out = Files.newBufferedWriter(path)) {

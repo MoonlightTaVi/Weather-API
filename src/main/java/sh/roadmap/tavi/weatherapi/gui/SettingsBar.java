@@ -7,9 +7,9 @@ import java.util.Locale;
 
 import javax.swing.*;
 
+import sh.roadmap.tavi.weatherapi.enums.UNIT;
 import sh.roadmap.tavi.weatherapi.gui.locale.*;
 import sh.roadmap.tavi.weatherapi.service.AppSettings;
-import sh.roadmap.tavi.weatherapi.service.UNIT;
 
 @SuppressWarnings("serial")
 public class SettingsBar extends JPanel implements ActionListener {

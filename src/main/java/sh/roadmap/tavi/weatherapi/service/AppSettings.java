@@ -5,6 +5,8 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sh.roadmap.tavi.weatherapi.enums.UNIT;
+
 public class AppSettings {
 	
 	private Logger log = LoggerFactory.getLogger(AppSettings.class);

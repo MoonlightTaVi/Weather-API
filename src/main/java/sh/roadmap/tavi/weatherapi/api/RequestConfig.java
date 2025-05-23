@@ -1,4 +1,4 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.api;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

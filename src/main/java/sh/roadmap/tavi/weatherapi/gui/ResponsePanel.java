@@ -6,25 +6,32 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.text.*;
 
+import sh.roadmap.tavi.weatherapi.enums.UNIT;
 import sh.roadmap.tavi.weatherapi.gui.locale.*;
 import sh.roadmap.tavi.weatherapi.model.WeatherData;
 import sh.roadmap.tavi.weatherapi.service.AppSettings;
-import sh.roadmap.tavi.weatherapi.service.UNIT;
 
 @SuppressWarnings("serial")
 public class ResponsePanel extends JPanel {
-	
 	private AppSettings appSettings;
 	private UiObserver uiObserver;
 	private UiFactory uiFactory;
 	private Map<Label, Component> labels = new HashMap<>();
 	private JTextPane address;
+	private JLabel updated;
 	
 	public void init() {
 		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
 		this.setLayout(layout);
 		this.setAlignmentX(CENTER_ALIGNMENT);
-		
+
+
+		this.add(
+				getRow(
+						uiFactory.getLabelBig("ui.response.updated"),
+						getUpdated()
+						)
+				);
 		this.add(getAddress());
 		
 		setupDay(0, "ui.response.today");
@@ -47,15 +54,24 @@ public class ResponsePanel extends JPanel {
 	public void updateFromData(WeatherData data) {
 		uiObserver.customUpdate();
 		address.setText(data.getResolvedAddress());
+		updated.setText(data.getTimestamp());
+		
 		for (Label key : labels.keySet()) {
 			switch (labels.get(key)) {
-			case JLabel label: label.setText(data.getFromDay(key.day, key.type)); break;
-			case JTextArea area: area.setText(data.getFromDay(key.day, key.type)); break;
-			case JTextPane pane: pane.setText(data.getFromDay(key.day, key.type)); break;
+			case JLabel label:
+				label.setText(data.getFromDay(key.day, key.type));
+				break;
+			case JTextArea area:
+				area.setText(data.getFromDay(key.day, key.type));
+				break;
+			case JTextPane pane:
+				pane.setText(data.getFromDay(key.day, key.type));
+				break;
 			default: break;
 			}
 		}
 	}
+	
 	
 	private void setupDay(int day, String daynameRef) {
 		this.add(
@@ -108,6 +124,14 @@ public class ResponsePanel extends JPanel {
 		
 		panel.setVisible(true);
 		return panel;
+	}
+	
+	private JLabel getUpdated() {
+		updated = new JLabel("<...>", SwingConstants.CENTER);
+		updated.setFont(updated.getFont().deriveFont(0));
+		updated.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		updated.setHorizontalAlignment(JLabel.CENTER);
+		return updated;
 	}
 	
 	private JTextPane getAddress() {
@@ -169,6 +193,7 @@ public class ResponsePanel extends JPanel {
 		labels.put(new Label(day, type), pane);
 		return pane;
 	}
+	
 	
 	record Label(int day, String type) { }
 	

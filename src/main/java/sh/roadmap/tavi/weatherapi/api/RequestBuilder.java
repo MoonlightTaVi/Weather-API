@@ -1,7 +1,9 @@
-package sh.roadmap.tavi.weatherapi.service;
+package sh.roadmap.tavi.weatherapi.api;
 
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
+import sh.roadmap.tavi.weatherapi.enums.UNIT;
+
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
