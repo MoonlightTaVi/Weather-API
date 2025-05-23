@@ -18,8 +18,8 @@ public class AppSettings {
 	
 	
 	public void init() {
-		settingsCache.getString("lang").ifPresent(val -> lang = val);
-		settingsCache.getString("units").ifPresent(
+		settingsCache.get("lang", String.class).ifPresent(val -> lang = val);
+		settingsCache.get("units", String.class).ifPresent(
 				val -> units = UNIT.valueOf(val.toUpperCase())
 				);
 		Locale.setDefault(Locale.forLanguageTag(lang));
@@ -36,7 +36,7 @@ public class AppSettings {
 	
 	public void setLang(String lang) {
 		this.lang = lang;
-		settingsCache.putString("lang", lang);
+		settingsCache.put("lang", lang);
 	}
 	
 	public UNIT getUnits() {
@@ -45,7 +45,7 @@ public class AppSettings {
 	
 	public void setUnits(UNIT units) {
 		this.units = units;
-		settingsCache.putString("units", units.toString());
+		settingsCache.put("units", units);
 	}
 	
 }

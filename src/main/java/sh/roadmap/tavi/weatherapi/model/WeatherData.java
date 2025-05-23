@@ -12,8 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WeatherData {
-	private static Logger log = LoggerFactory.getLogger(WeatherData.class);
-	
+	private Logger log = LoggerFactory.getLogger(WeatherData.class);
 	private JSONObject body;
 	private long updatedTime;
 	
@@ -65,11 +64,9 @@ public class WeatherData {
 	private <T> Optional<T> getParam(String key, Class<T> castTo) {
 		return getParam(body, key, castTo);
 	}
-	
 	private Optional<String> getParam(String key) {
 		return getParam(body, key, String.class);
 	}
-	
 	private Optional<String> getParam(JSONObject fromObject, String key) {
 		return getParam(fromObject, key, String.class);
 	}

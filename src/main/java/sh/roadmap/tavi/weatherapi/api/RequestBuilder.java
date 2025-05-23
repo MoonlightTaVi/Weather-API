@@ -16,9 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import io.netty.channel.ChannelOption;
 
 public class RequestBuilder {
-	
 	private Logger log = LoggerFactory.getLogger(RequestBuilder.class);
-	
 	private WebClient client;
 	private RequestConfig config;
 	
@@ -26,8 +24,6 @@ public class RequestBuilder {
 	private String forDate = "next1days";
 	private String units = "us";
 	private String lang = "en";
-	
-	
 	public RequestBuilder() {
 		HttpClient httpClient = HttpClient.create()
 				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000)
@@ -35,9 +31,7 @@ public class RequestBuilder {
 		client = WebClient.builder()
 				.clientConnector(new ReactorClientHttpConnector(httpClient))
 				.build();
-				
 	}
-	
 	
 	public void setConfig(RequestConfig config) {
 		this.config = config;
@@ -48,12 +42,10 @@ public class RequestBuilder {
 		this.location = location;
 		return this;
 	}
-	
 	public RequestBuilder setUnits(UNIT units) {
 		this.units = units.toString().toLowerCase();
 		return this;
 	}
-	
 	public RequestBuilder setLanguage(String language) {
 		lang = language;
 		return this;
@@ -70,6 +62,7 @@ public class RequestBuilder {
 		params.put("include", config.getInclude());
 		params.put("elements", config.getElements());
 		params.put("contentType", "json");
+		
 		Mono<String> response = client.get().uri(uri, params)
 				.exchangeToMono(r -> {
 					if (r.statusCode().is2xxSuccessful()) {
